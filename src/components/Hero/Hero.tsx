@@ -3,7 +3,11 @@
 import { GridPattern } from '../GridPattern'
 import './Hero.css'
 
-const Hero = () => {
+interface HeroProps {
+  onViewDashboard: () => void
+}
+
+const Hero = ({ onViewDashboard }: HeroProps) => {
   return (
     <section className="hero">
       <div className="hero__container container">
@@ -21,12 +25,12 @@ const Hero = () => {
           </p>
           
           <div className="hero__actions">
-            <a href="#report" className="btn btn-primary">
+            <a href="#features" className="btn btn-primary">
               Report Issue
             </a>
-            <a href="#dashboard" className="btn btn-secondary">
+            <button type="button" className="btn btn-secondary" onClick={onViewDashboard}>
               View Dashboard
-            </a>
+            </button>
           </div>
           
           <div className="hero__trusted">

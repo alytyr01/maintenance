@@ -3,9 +3,10 @@ import './Navbar.css'
 
 interface NavbarProps {
   onRequestDemo: () => void
+  onViewDashboard: () => void
 }
 
-const Navbar = ({ onRequestDemo }: NavbarProps) => {
+const Navbar = ({ onRequestDemo, onViewDashboard }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Navbar = ({ onRequestDemo }: NavbarProps) => {
         <div className="navbar__links">
           <a href="#features" className="navbar__link">Features</a>
           <a href="#workflow" className="navbar__link">Workflow</a>
-          <a href="#dashboard" className="navbar__link">Analytics</a>
+          <button type="button" className="navbar__link navbar__link--btn" onClick={onViewDashboard}>Analytics</button>
           <a href="#about" className="navbar__link">About</a>
           <a href="#contact" className="navbar__link">Contact</a>
         </div>
