@@ -32,6 +32,7 @@ import SettingsView from './SettingsView'
 import HelpView from './HelpView'
 import NewRequestModal from './NewRequestModal'
 import NewWorkOrderModal from './NewWorkOrderModal'
+import UserProfileModal from './UserProfileModal'
 import './DashboardPreview.css'
 
 const sidebarItems: { icon: typeof LayoutDashboard; label: ViewKey }[] = [
@@ -63,6 +64,7 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [showNewRequest, setShowNewRequest] = useState(false)
   const [showNewWorkOrder, setShowNewWorkOrder] = useState(false)
+  const [showUserProfile, setShowUserProfile] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
 
   const showToast = (message: string) => {
@@ -469,13 +471,13 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
           </nav>
 
           <div className="dashboard-preview__sidebar-footer">
-            <div className="dashboard-preview__user">
+            <button className="dashboard-preview__user dashboard-preview__user-btn" onClick={() => setShowUserProfile(true)}>
               <div className="dashboard-preview__avatar">AK</div>
               <div className="dashboard-preview__user-info">
                 <span className="dashboard-preview__user-name">Alex Kim</span>
                 <span className="dashboard-preview__user-role">Admin</span>
               </div>
-            </div>
+            </button>
           </div>
         </aside>
 
@@ -525,7 +527,13 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
               >
                 <Settings size={16} strokeWidth={1.75} />
               </button>
-              <div className="dashboard-preview__avatar dashboard-preview__avatar--sm">AK</div>
+              <button
+                className="dashboard-preview__avatar-btn"
+                onClick={() => setShowUserProfile(true)}
+                aria-label="User profile"
+              >
+                <div className="dashboard-preview__avatar dashboard-preview__avatar--sm">AK</div>
+              </button>
             </div>
           </div>
 
@@ -547,6 +555,10 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
           onClose={() => setShowNewWorkOrder(false)}
           onSubmit={handleCreateWorkOrder}
         />
+      )}
+
+      {showUserProfile && (
+        <UserProfileModal onClose={() => setShowUserProfile(false)} />
       )}
 
       {toast && (
