@@ -471,9 +471,9 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
 
           <div className="dashboard-preview__sidebar-footer">
             <button className="dashboard-preview__user dashboard-preview__user-btn" onClick={() => setShowUserProfile(true)}>
-              <div className="dashboard-preview__avatar">AK</div>
+              <div className="dashboard-preview__avatar">AJ</div>
               <div className="dashboard-preview__user-info">
-                <span className="dashboard-preview__user-name">Alex Kim</span>
+                <span className="dashboard-preview__user-name">Aljune Yatar</span>
                 <span className="dashboard-preview__user-role">Admin</span>
               </div>
             </button>
@@ -531,7 +531,7 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
                 onClick={() => setShowUserProfile(true)}
                 aria-label="User profile"
               >
-                <div className="dashboard-preview__avatar dashboard-preview__avatar--sm">AK</div>
+                <div className="dashboard-preview__avatar dashboard-preview__avatar--sm">AJ</div>
               </button>
             </div>
           </div>
