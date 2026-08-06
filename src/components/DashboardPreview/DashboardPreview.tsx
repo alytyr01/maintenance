@@ -452,8 +452,7 @@ const DashboardPreview = ({ onBack }: DashboardPreviewProps) => {
       <div className="dashboard-preview__app">
         <aside className="dashboard-preview__sidebar">
           <div className="dashboard-preview__logo">
-            <div className="dashboard-preview__logo-mark">M</div>
-            <span className="dashboard-preview__logo-text">Maintena</span>
+            <img src="/logo.png" alt="Maintena" className="dashboard-preview__logo-img" />
           </div>
 
           <nav className="dashboard-preview__nav">

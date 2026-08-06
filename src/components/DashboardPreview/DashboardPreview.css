@@ -45,28 +45,14 @@
 .dashboard-preview__logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
   padding: var(--spacing-2) var(--spacing-3);
   margin-bottom: var(--spacing-8);
 }
 
-.dashboard-preview__logo-mark {
-  width: 32px;
+.dashboard-preview__logo-img {
   height: 32px;
-  background: var(--color-button);
-  color: var(--color-button-text);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: var(--font-size-base);
-}
-
-.dashboard-preview__logo-text {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: var(--color-primary);
+  width: auto;
+  object-fit: contain;
 }
 
 .dashboard-preview__nav {
