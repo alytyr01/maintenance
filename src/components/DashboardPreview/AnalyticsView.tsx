@@ -10,45 +10,33 @@ import {
   Download,
   ChevronRight,
 } from 'lucide-react'
+import { ActivityItem, Technician, Facility } from '../../lib/types'
 
-const activity = [
-  { time: '2m ago', icon: AlertCircle, text: 'Water leak reported in Building A · Floor 2' },
-  { time: '18m ago', icon: UserPlus, text: 'Sarah Kim assigned to Room AC Failure' },
-  { time: '1h ago', icon: Wrench, text: 'Repair started on Electrical Outlet · Building C' },
-  { time: '3h ago', icon: CheckCircle2, text: 'Repair completed for Ceiling Damage · Building B' },
-]
+interface AnalyticsViewProps {
+  activity: ActivityItem[]
+  technicians: Technician[]
+  facilities: Facility[]
+}
 
-const technicians = [
-  { name: 'John Martinez', completed: 48, avgTime: '2.1h', score: 98 },
-  { name: 'Sarah Kim', completed: 42, avgTime: '2.6h', score: 95 },
-  { name: 'Mike Rodriguez', completed: 38, avgTime: '3.2h', score: 91 },
-]
+const AnalyticsView = ({ activity, technicians, facilities }: AnalyticsViewProps) => {
+  const weeklyData = [42, 58, 45, 72, 65, 88, 76]
 
-const weeklyData = [42, 58, 45, 72, 65, 88, 76]
+  const categories = [
+    { label: 'HVAC', value: 32, pct: 32 },
+    { label: 'Plumbing', value: 24, pct: 24 },
+    { label: 'Electrical', value: 18, pct: 18 },
+    { label: 'Structural', value: 14, pct: 14 },
+    { label: 'Other', value: 12, pct: 12 },
+  ]
 
-const categories = [
-  { label: 'HVAC', value: 32, pct: 32 },
-  { label: 'Plumbing', value: 24, pct: 24 },
-  { label: 'Electrical', value: 18, pct: 18 },
-  { label: 'Structural', value: 14, pct: 14 },
-  { label: 'Other', value: 12, pct: 12 },
-]
+  const quickActions = [
+    { icon: Plus, label: 'New Report' },
+    { icon: UserPlus, label: 'Assign Technician' },
+    { icon: ClipboardList, label: 'Create Work Order' },
+    { icon: FileBarChart, label: 'Generate Report' },
+    { icon: Download, label: 'Export Analytics' },
+  ]
 
-const facilities = [
-  { name: 'Building A', rooms: 120, pending: 8, critical: 2, inspection: '92%' },
-  { name: 'Building B', rooms: 96, pending: 5, critical: 1, inspection: '88%' },
-  { name: 'Building C', rooms: 64, pending: 3, critical: 0, inspection: '95%' },
-]
-
-const quickActions = [
-  { icon: Plus, label: 'New Report' },
-  { icon: UserPlus, label: 'Assign Technician' },
-  { icon: ClipboardList, label: 'Create Work Order' },
-  { icon: FileBarChart, label: 'Generate Report' },
-  { icon: Download, label: 'Export Analytics' },
-]
-
-const AnalyticsView = () => {
   return (
     <>
       <div className="dashboard-preview__view-header">
@@ -70,10 +58,14 @@ const AnalyticsView = () => {
             </div>
 
             <div className="dashboard-preview__activity">
-              {activity.map((item, index) => (
-                <div key={index} className="dashboard-preview__activity-item">
+              {activity.slice(0, 6).map((item) => (
+                <div key={item.id} className="dashboard-preview__activity-item">
                   <div className="dashboard-preview__activity-icon">
-                    <item.icon size={14} strokeWidth={1.75} />
+                    {item.type === 'alert' && <AlertCircle size={14} strokeWidth={1.75} />}
+                    {item.type === 'assignment' && <UserPlus size={14} strokeWidth={1.75} />}
+                    {item.type === 'repair' && <Wrench size={14} strokeWidth={1.75} />}
+                    {item.type === 'completed' && <CheckCircle2 size={14} strokeWidth={1.75} />}
+                    {item.type === 'info' && <FileBarChart size={14} strokeWidth={1.75} />}
                   </div>
                   <div className="dashboard-preview__activity-content">
                     <p className="dashboard-preview__activity-text">{item.text}</p>
@@ -195,8 +187,8 @@ const AnalyticsView = () => {
                 <span>Avg Time</span>
                 <span>Score</span>
               </div>
-              {technicians.map((tech, index) => (
-                <div key={index} className="dashboard-preview__tech-row">
+              {technicians.slice(0, 5).map((tech, index) => (
+                <div key={tech.id} className="dashboard-preview__tech-row">
                   <span className="dashboard-preview__tech-name">
                     <span className="dashboard-preview__tech-rank">{index + 1}</span>
                     {tech.name}
@@ -227,8 +219,8 @@ const AnalyticsView = () => {
             </div>
 
             <div className="dashboard-preview__facilities">
-              {facilities.map((facility, index) => (
-                <div key={index} className="dashboard-preview__facility">
+              {facilities.slice(0, 4).map((facility) => (
+                <div key={facility.id} className="dashboard-preview__facility">
                   <div className="dashboard-preview__facility-header">
                     <span className="dashboard-preview__facility-name">
                       <Building2 size={14} strokeWidth={1.75} />
